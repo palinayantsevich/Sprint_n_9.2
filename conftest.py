@@ -1,6 +1,6 @@
 import pytest
 from helper import Helper
-from api.user_api import SignUpUserAPI
+from api.user_api import UserAPI
 from api.listing_api import ListingAPI
 from data.data import ListingData
 
@@ -19,7 +19,7 @@ def generate_user_data():
 
 @pytest.fixture(scope='function')
 def signup_user(generate_user_data):
-    return SignUpUserAPI.signup_user(generate_user_data['email'], generate_user_data['password'])
+    return UserAPI.signup_user(generate_user_data['email'], generate_user_data['password'])
 
 
 @pytest.fixture(scope='function')
@@ -32,7 +32,7 @@ def token(signup_user):
 def token_of_another_user():
     email = Helper.generate_user_email()
     password = Helper.generate_user_password()
-    response = SignUpUserAPI.signup_user(email, password)
+    response = UserAPI.signup_user(email, password)
     return response.json()['access_token']['access_token']
 
 
