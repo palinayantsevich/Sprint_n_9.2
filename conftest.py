@@ -1,7 +1,7 @@
 import pytest
 from helper import Helper
 from api.user_api import SignUpUserAPI
-from api.listing_api import CreateListingAPI
+from api.listing_api import ListingAPI
 from data.data import ListingData
 
 
@@ -38,7 +38,7 @@ def token_of_another_user():
 
 @pytest.fixture(scope='function')
 def listing_id(token, image_file):
-    response = CreateListingAPI.create_listing(token, ListingData.LISTING_DATA, image_file)
+    response = ListingAPI.create_listing(token, ListingData.LISTING_DATA, image_file)
     return response.json()['id']
 
 
